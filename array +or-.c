@@ -1,9 +1,12 @@
 #include <stdio.h>
 void main()
 {
-    int i,j,m,n,arr[20][20];
+    int i,j,m,n;
     printf("Enter the size of 2D array\n");
     scanf("%d%d",&m,&n);
+    int arr[m][n];
+    for(i=0;i<m;i++)
+    {
     for(i=0;i<m;i++)
     {
         for(j=0;j<n;j++)
@@ -11,8 +14,6 @@ void main()
             scanf("%d",&arr[i][j]);
         }
     }
-    for(i=0;i<m;i++)
-    {
         for(j=0;j<n;j++)
         {
             if(arr[i][j]>=0)

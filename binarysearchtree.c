@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<process.h>
+typedef struct node
+{
+	struct node *left;
+	int data;
+	struct node *right;
+}tree;
+tree *root = NULL;
+tree *insert(tree *,int);
+void InorderTraversal(tree *);
+void main()
+{
+	int value,option;
+	printf("\"1\" To insert an element\n\"2\" To display tree in inorder\n\"3\" To exit\n");
+	do
+	{
+		printf("Enter your option: ");
+		scanf("%d",&option);
+		switch(option)
+		{
+			case 1:
+				printf("Enter the data to insert in your tree: ");
+				scanf("%d",&value);
+				root = insert(root,value);
+				break;
+			case 2:
+				printf("The elements of the tree are:\n");
+				InorderTraversal(root);
+				printf("\n");
+				break;
+			case 3:
+				exit(0);
+				break;
+			default:
+				printf("Option doesn\'t exist try again");
+		}
+	}while(option!=3);
+}
+
+tree *insert(tree *root,int value)
+{
+	tree *ptr,*node_ptr,*parent_ptr;
+	ptr = malloc(sizeof(struct node));
+	ptr->data = value;
+	ptr->left = NULL;
+	ptr->right = NULL;
+	if(root==NULL)
+	{
+		root = ptr;
+		root->left = NULL;
+		root->right = NULL;
+	}
+	else
+	{
+		parent_ptr = NULL;
+		node_ptr = root;
+		while(node_ptr!=NULL)
+		{
+			parent_ptr = node_ptr;
+			if(value<node_ptr->data)
+				node_ptr = node_ptr->left;
+			else
+				node_ptr = node_ptr->right;
+		}
+		if(value<parent_ptr->data)
+			parent_ptr->left = ptr;
+		else
+			parent_ptr->right = ptr;
+	}
+	return root;
+}
+
+void InorderTraversal(tree *root)
+{
+	if(root!=NULL)
+	{
+		InorderTraversal(root->left);
+		printf("%d ",root->data);
+		InorderTraversal(root->right);
+	}
+}

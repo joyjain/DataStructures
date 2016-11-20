@@ -10,6 +10,6 @@ void main()
 	scanf("%d",&c);
 	smal = a<b?(a<c?a:c):(b<c?b:c);
 	larg = a>b?(a>c?a:c):(b>c?b:c);
-	secl = (((larg==a&&smal==b)||(larg==b&&smal==a))?c:(((larg==c&&smal==a)||(larg==a&&smal==c))?b:(((larg==b&&smal==a)||larg==a&&smal==b)?c:a)));
+	secl = (((larg==a&&smal==b)||(larg==b&&smal==a))?c:(((larg==c&&smal==a)||(larg==a&&smal==c))?b:(((larg==b&&smal==a)||larg==a&&smal==b)?c:c)));
 	printf("The second largest number is: %d",secl);
 }
