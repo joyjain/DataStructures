@@ -1,5 +1,8 @@
 //compiled and runned on linux based elementary OS 0.3.2 Freya (64-bit)
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 100
 //Following are the codes for colored text
 #define BLK   "\x1B[30m"
 #define RED   "\x1B[31m"
@@ -20,31 +23,39 @@
 #define MAGBG "\x1B[45m"
 #define CYNBG "\x1B[46m"
 #define WHTBG "\x1B[47m"
-void InfixToPostfix(){
-printf("hey i am InfixToPostfix");  //Jugaad hai
-}
-void InfixToPrefix(){
+
+char stack_char[MAX]
+, infix_char[100]
+, postfix_char[100];
+int top=-1;
+
+void push_char(char [], char);
+char pop_char(char []);
+void InfixtoPostfix(char [], char []);
+int getPriority(char);
+
+
+void InfixToPrefix() {
 printf("hey i am InfixToPrefix");
-
 }
-void PostfixToPrefix(){
+
+void PostfixToPrefix() {
 printf("hey i am PostfixToPrefix");
-
 }
-void PrefixToPostfix(){
+
+void PrefixToPostfix() {
 printf("hey i am PrefixToPostfix");
-
 }
-void PostfixEvaluation(){
-printf("hey i am PostfixEvaluation"); // jugad hai
 
+void PostfixEvaluation() {
+printf("hey i am PostfixEvaluation"); // Jugaad hai
 }
-void PrefixEvaluation(){
+
+void PrefixEvaluation() {
 printf("hey i am PrefixEvaluation");
-
 }
 
-int main() {
+int main(void) {
  printf(BOLD BLK  "=================================================    STACKS    ===================================================================================\n" RESET RESET);
  printf("PRESS 1 FOR : INTRODUCTION\nPRESS 2 FOR : APPLICATIONS\nPRESS 0 TO : EXIT\n");
 int c ;
@@ -68,6 +79,7 @@ int c ;
                     printf("Underflow state if it is completely empty.\n");
                     break;
                case 2:
+               {
                     printf("\n\n---------------- APPLICATIONS OF STACKS ------------------\n\n ");
                     printf("The simplest application of a stack is to reverse a word. \n");
                     printf(" You push a given word to stack - letter by letter - and then pop letters from the stack.\n");
@@ -82,39 +94,42 @@ int c ;
                     printf("PRESS 0 TO  : EXIT\n");
                     int d;
                     do {
-                      printf("ENTER YOUR OPTION ");
+                      printf("ENTER YOUR OPTION: ");
                       scanf("%d",&d);
                       switch(d)
                       {
                         case 1:
-                       
-                        printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
-                         printf("\n PRESS 2 TO: RUN THE SOURCE CODE\n\n ");
+                        {
+                         printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
+                         printf("\n PRESS 2 TO : RUN THE SOURCE CODE\n\n ");
                          printf("PRESS 0 TO EXIT\n");
                           int e;
                         do{
                         scanf("%d",&e);
-                        switch (e)
+                        switch(e)
                         {
-                          case 0:
-                            printf("THANKS FOR USING THIS PROGRAM , GOODBYE \n\n");
-
-                          return 0 ;
-                          break;
                           case 1:
-                          break;
+                            break;
                           case 2:
-                          InfixToPostfix();
-                          break;
+                          {
+                            printf("\nEnter any infix expression: ");
+                        	  gets(infix_char);
+                        	  strcpy(postfix_char,"");
+                        	  InfixtoPostfix(infix_char, postfix_char);
+                        	  printf("\nThe corresponding postfix expression is: ");
+                        	  puts(postfix_char);
+                            break;
+                          }
+                          case 0:
+                            printf("THANKS FOR USING THIS PROGRAM, GOODBYE \n\n");
+                            exit(0);
                           default:
                             printf("\nInvalid Choice\n Please try again or press 0 to EXIT \n\n");
-
-
                         }
                       }while(e!=0);
-
                         break;
-                        case 2:
+                      }
+                         case 2:
                          printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
                          printf("\n PRESS 2 TO: RUN THE SOURCE CODE\n\n ");
                          printf("PRESS 0 TO EXIT\n");
@@ -141,8 +156,8 @@ int c ;
                         }
                       }
                           while(f!=0);
-                      
-                      
+
+
                         break;
                         case 3:
                          printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
@@ -150,7 +165,7 @@ int c ;
                          printf("PRESS 0 TO EXIT\n");
                          int g;
                         do{
-                          
+
                         scanf("%d",&g);
                         switch (g)
                         {
@@ -171,8 +186,8 @@ int c ;
                         }
                           }
                         while(g!=0);
-                      
-                        
+
+
                         break;
                         case 4:
                          printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
@@ -200,10 +215,10 @@ int c ;
 
                         }
                       }while(h!=0);
-                       
+
                         break;
                         case 5:
-                       
+
                         printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
                          printf("\n PRESS 2 TO: RUN THE SOURCE CODE \n\n");
                          printf("PRESS 0 TO EXIT\n\n");
@@ -230,11 +245,11 @@ int c ;
                       } while(i!=0);
                         break;
                         case 6:
-                       
+
                         printf("\n PRESS 1 TO : DISPLAY THE SOURCE CODE FOR THE PROGRAM  ");
                          printf("\n PRESS 2 TO: RUN THE SOURCE CODE \n");
                          printf("PRESS 0 TO EXIT\n");
-                         int j ; 
+                         int j ;
                         do{
                         scanf("%d",&j);
                         switch (j)
@@ -265,10 +280,11 @@ int c ;
                          break;
                       }
 
-                    }while(c!=0);
+                    }while(d!=0);
                    break;
+                 }
                case 0:
-               printf("THANKS FOR USING THIS PROGRAM , GOODBYE \n\n ");
+                printf("THANKS FOR USING THIS PROGRAM , GOODBYE \n\n ");
                return 0;
                    break;
                default:
@@ -276,4 +292,85 @@ int c ;
 
            }
          }while(c!=0);
+        }
+
+        void InfixtoPostfix(char source[], char target[])
+        {
+        	int i=0, j=0;
+        	char temp;
+        	strcpy(target, "");
+        	while(source[i]!='\0')
+        	{
+        	if(source[i]=='(')
+        	{
+        		push_char(stack_char, source[i]);
+        		i++;
+        	}
+        	else if(source[i] == ')')
+        	{
+        	while((top!=-1)&&(stack_char[top]!='('))
+        	{
+        		target[j] = pop_char(stack_char);
+        		j++;
+        	}
+        	if(top==-1)
+        		printf("\nIncorrect exp");
+        	temp = pop_char(stack_char);
+        	i++;
+        	}
+        	else if(isdigit(source[i])||isalpha(source[i]))
+        	{
+        		target[j] = source[i];
+        		j++,i++;
+        	}
+        	else if(source[i]=='+'||source[i]=='-'||source[i]=='*'||source[i]=='/'||source[i]=='%')
+        	{
+        	while((top!=-1) && (stack_char[top]!= '(') && (getPriority(stack_char[top]) > getPriority(source[i])))
+        	{
+        		target[j] = pop_char(stack_char);
+        		j++;
+        	}
+        	push_char(stack_char, source[i]);
+        	i++;
+        	}
+        	else
+        		printf("\nIncorrect element in exp");
+        	}
+        	while((top!=-1) && (stack_char[top]!='('))
+          	{
+          target[j] = pop_char(stack_char);
+          j++;
+          }
+          target[j]='\0';
+          }
+          int getPriority(char op)
+          {
+          if(op=='/'||op == '*'||op=='%')
+           return 1;
+           else if(op=='+'||op=='-')
+           return 0;
+        }
+
+        void push_char(char stack_char[], char val)
+        {
+           if(top==MAX-1)
+           printf("\nStack Overflow");
+           else
+           {
+           		top++;
+           		stack_char[top] = val;
+           }
+        }
+
+        char pop_char(char stack_char[])
+        {
+           char val=' ';
+           if(top==-1)
+           		printf("\nStack Underflow");
+        	else
+        	{
+        		val = stack_char[top];
+           		top--;
+           	}
+           return val;
         }

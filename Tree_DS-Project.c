@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<malloc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
 
 #define true 1
 #define false 0
@@ -57,41 +57,48 @@ int gap = 3;
 //used for printing next node in the same level,
 //this is the x coordinate of the next char printed
 int print_next;
+tree *root = NULL,
+*root_copy = NULL,
+*mirror = NULL;
 
-// prototypes
-tree *root = NULL,*mirror = NULL;
-tree *btreeToCList(tree *);
+// Prototypes
+//1st Application
 tree *newNode();
+tree *btreeToCList(tree *);
+tree *concatenate(tree *, tree *);
 void displayCList(tree *);
 
-tree *insertBST(tree *, int);
+//2nd Application
 void storeBSTNodes(tree *);
-tree* buildtreeUtil(int, int);
+tree *buildtreeUtil(int, int);
 tree *buildTree(tree *);
-void inOrder(tree *);
 int n, nm = 0, start, end;
-int nodes[50] = {[0 ... 49] = -1}, in[20], post[20];
-int getArrayFilledSize();
+int nodes[50] = {[0 ... 49] = -1};
 
-tree *mirrorImage(tree *);
+//3rd Application
 int isSymmetric(tree *);
 int isMirror(tree *, tree *);
 tree *mirrorImage(tree *);
-tree *getNewNode(int);
-void InorderTraversal(tree *);
 
+//4th Application
 int isFulltree(tree *);
 
+//5th Application
+tree *buildTree_2(int [], int [], int);
 tree *buildUtil(int [], int [], int, int, int *);
-tree *buildtree(int [], int [], int);
 int search(int [], int, int, int);
 
+//Functions for tree creation, deletion, traversal etc.
+tree *insertBST(tree *, int);
+tree *getNewNode(int);
+void InorderTraversal(tree *);
+void PreorderTraversal(tree *);
 tree *make_empty(tree *);
 tree *find_min(tree *);
 tree *find_max(tree *);
 tree *find(int, tree *);
-tree * insert(int, tree *);
-tree * delete(int, tree *);
+tree *insert(int, tree *);
+tree *delete(int, tree *);
 
 int MIN (int, int);
 int MAX (int, int);
@@ -99,8 +106,8 @@ int MAX (int, int);
 void print_ascii_tree(tree *);
 void print_level(asciinode *, int, int);
 void compute_edge_lengths(asciinode *);
-asciinode * build_ascii_tree_recursive(tree *);
-asciinode * build_ascii_tree(tree *);
+asciinode *build_ascii_tree_recursive(tree *);
+asciinode *build_ascii_tree(tree *);
 void free_ascii_tree(asciinode *);
 void compute_lprofile(asciinode *, int, int);
 void compute_rprofile(asciinode *, int, int);
@@ -153,13 +160,13 @@ int main(void)
 						case 1:
 						{
 							root = NULL;
-							printf("For Example:\n");
+							printf("FOR EXAMPLE:\n");
 							printf("\t\t 10\n");
 							printf("\t\t/  \\ \n");
 							printf("\t       12   15\n");
 							printf("\t      / \\   /\n");
 							printf("\t     25 30 36\n\n");
-							printf("The above tree should be in-place converted to following\nCircular Doubly Linked List\n\n");
+							printf("THE ABOVE TREE SHOULD BE IN-PLACE CONVERTED TO FOLLOWING\nCIRCULAR DOUBLY LINKED LIST\n\n");
 							printf("\t  ------------------------\n");
 							printf("\t  |\t\t         |\n");
 							printf("\t--25==12==30==10==36==15--\n");
@@ -167,6 +174,8 @@ int main(void)
 							printf("\n	------------------------\n\n");
 							printf("Enter data (-1 for no data): ");
 							root = newNode();
+							printf("THE BINARY TREE IS: \n\n");
+							print_ascii_tree(root);
 							tree *head = btreeToCList(root);
 							displayCList(head);
 							printf("ENTER ANY OF THE ABOVE OPTIONS FOR ANOTHER APPLICATION OR 0 TO EXIT\n");
@@ -179,16 +188,15 @@ int main(void)
 							do {
 								printf("Enter data (-1 to stop insertion): ");
 								scanf("%d",&value);
-								if(value!=-1){
+								if(value!=-1) {
 									root = insertBST(root, value);
 								}
 							}while(value!=-1);
-
-							root = buildTree(root);
-							printf("Preorder traversal of balanced BST is: \n");
-							//NOTE fix in order!
-							// inOrder(root);
+							printf("THE UNBALANCED BST IS: \n\n");
 							print_ascii_tree(root);
+							root_copy = buildTree(root);
+							printf("\nTHE BALANCED BST IS: \n");
+							print_ascii_tree(root_copy);
 							printf("\n\n");
 							printf("ENTER ANY OF THE ABOVE OPTIONS FOR ANOTHER APPLICATION OR 0 TO EXIT\n");
 							break;
@@ -197,7 +205,7 @@ int main(void)
 						{
 							int result;
 							root = NULL;
-							printf("For Example, this binary tree is symmetric:\n");
+							printf("FOR EXAMPLE, THIS BINARY TREE IS SYMMETRIC:\n");
 							printf("\t\t 1\n");
 							printf("\t\t/ \\ \n");
 							printf("\t       2   2\n");
@@ -205,15 +213,17 @@ int main(void)
 							printf("\t     3  4 4  3\n\n");
 							printf("Enter data (-1 for no data): ");
 							root = newNode();
+							printf("THE BINARY TREE IS: \n\n");
+							print_ascii_tree(root);
 							result = isSymmetric(root);
 							if(result==true) {
-								printf("THE GIVEN BINARY TREE IS A SYMMETRIC TREE (MIRROR IMAGE OF ITSELF)\n\n");
+								printf("\nTHE GIVEN BINARY TREE IS A SYMMETRIC TREE (MIRROR IMAGE OF ITSELF)\n\n");
 							}
 							else {
 								mirror = mirrorImage(root);
-								printf("THE MIRROR IMAGE OF THE GIVEN BINARY TREE IS:\n");
+								printf("\nTHE MIRROR IMAGE OF THE GIVEN BINARY TREE IS:\n\n");
 								print_ascii_tree(mirror);
-								printf("\n\n");
+								printf("\n");
 							}
 							printf("ENTER ANY OF THE ABOVE OPTIONS FOR ANOTHER APPLICATION OR 0 TO EXIT\n");
 							break;
@@ -222,13 +232,13 @@ int main(void)
 						{
 							int result;
 							root = NULL;
-							printf("For Example, this binary tree is full:\n");
+							printf("FOR EXAMPLE, THIS BINARY TREE IS FULL:\n");
 							printf("\t\t 1\n");
 							printf("\t\t/ \\ \n");
 							printf("\t       2   3\n");
 							printf("\t      / \\ \n");
 							printf("\t     4   5\n\n");
-							printf("Whereas, this binary tree is not full:\n");
+							printf("WHEREAS, THIS BINARY TREE IS NOT FULL:\n");
 							printf("\t\t 1\n");
 							printf("\t\t/ \\ \n");
 							printf("\t       2   3\n");
@@ -236,6 +246,8 @@ int main(void)
 							printf("\t     4\n\n");
 							printf("Enter data (-1 for no data): ");
 							root = newNode();
+							printf("THE BINARY TREE IS: \n\n");
+							print_ascii_tree(root);
 							result = isFulltree(root);
 							if(result==true) {
 								printf("\nTHE GIVEN BINARY TREE IS A FULL BINARY TREE\n\n");
@@ -248,22 +260,25 @@ int main(void)
 						}
 						case 5:
 						{
-							int i,j;
-							printf("Enter the number of nodes for your binary tree: ");
+							int i, j;
+							printf("ENTER THE NUMBER OF NODES FOR YOUR BINARY TREE: ");
 							scanf("%d",&j);
-							printf("Enter the Inorder of your binary tree:\n");
+							int in[j], post[j];
+							printf("ENTER THE INORDER TRAVERSAL OF YOUR BINARY TREE:\n");
 							for(i=0;i<j;i++)
 							{
 								scanf("%d",&in[i]);
 							}
-							printf("Enter the Postorder of your binary tree:\n");
+							printf("ENTER THE POSTORDER TRAVERSAL OF YOUR BINARY TREE:\n");
 							for(i=0;i<j;i++)
 							{
 								scanf("%d",&post[i]);
 							}
 							int n = sizeof(in)/sizeof(in[0]);
-							root = buildtree(in, post, n);
-							printf("Preorder traversal of binary tree is: \n");
+							root = buildTree_2(in, post, n);
+							printf("\nTHE BINARY TREE IS: \n\n");
+							print_ascii_tree(root);
+							printf("\n");
 							printf("ENTER ANY OF THE ABOVE OPTIONS FOR ANOTHER APPLICATION OR 0 TO EXIT\n");
 							break;
 						}
@@ -285,33 +300,7 @@ int main(void)
 	}while(op!=0);
 }
 
-tree *concatenate(tree *leftList, tree *rightList)
-{
-	/* If either of the list is empty
-	then return the other list */
-	if(leftList==NULL)
-	return rightList;
-	if(rightList==NULL)
-	return leftList;
-	// Store the last Node of left List
-	tree *leftLast = leftList->left;
-	// Store the last Node of right List
-	tree *rightLast = rightList->left;
-	/* Connect the last node of Left List
-	with the first Node of the right List */
-	leftLast->right = rightList;
-	rightList->left = leftLast;
-	/* Left of first node points to
-	the last node in the List */
-	leftList->left = rightLast;
-	/* Right of last node refers to the first
-	node of the List */
-	rightLast->right = leftList;
-	return leftList;
-}
-
-/* Function converts a tree to a circular Linked List
-and then returns the head of the Linked List */
+// Function converts a tree to a circular Linked List and then returns the head of the Linked List
 tree *btreeToCList(tree *root)
 {
 	if(root == NULL)
@@ -321,7 +310,7 @@ tree *btreeToCList(tree *root)
 	tree *right = btreeToCList(root->right);
 	/* Make a circular linked list of single node
 	(or root). To do so, make the right and
-	left pointers of this node point to itself*/
+	left pointers of this node point to itself */
 	root->left = root->right = root;
 	/* Step 1 (concatenate the left list with the list
 	with single node, i.e., current node)
@@ -330,10 +319,31 @@ tree *btreeToCList(tree *root)
 	return concatenate(concatenate(left, root), right);
 }
 
+tree *concatenate(tree *leftList, tree *rightList)
+{
+	// If either of the list is empty then return the other list
+	if(leftList==NULL)
+	return rightList;
+	if(rightList==NULL)
+	return leftList;
+	// Store the last Node of left List
+	tree *leftLast = leftList->left;
+	// Store the last Node of right List
+	tree *rightLast = rightList->left;
+	// Connect the last node of Left List with the first Node of the right List
+	leftLast->right = rightList;
+	rightList->left = leftLast;
+	// Left of first node points to the last node in the List
+	leftList->left = rightLast;
+	// Right of last node refers to the first node of the List
+	rightLast->right = leftList;
+	return leftList;
+}
+
 // Display Circular Link List
 void displayCList(tree *head)
 {
-	printf("Circular Doubly Linked List is :\n");
+	printf("\nCircular Doubly Linked List is :\n");
 	tree *itr = head;
 	do
 	{
@@ -344,6 +354,7 @@ void displayCList(tree *head)
 }
 
 // Create a new Node and return its address
+// For 1st application only
 tree *newNode()
 {
 	tree *temp;
@@ -360,6 +371,18 @@ tree *newNode()
 	return temp;
 }
 
+// This functions converts an unbalanced BST to a sorted array
+tree *buildTree(tree *root)
+{
+	// Store nodes of given BST in sorted order
+	nm = 0;
+	int i;
+	storeBSTNodes(root);
+	// Constucts BST from nodes[]
+	root = NULL;
+	return buildtreeUtil(0, nm-1);
+}
+
 void storeBSTNodes(tree *root)
 {
 	if(root!=NULL)
@@ -370,59 +393,58 @@ void storeBSTNodes(tree *root)
 	}
 }
 
-int getArrayFilledSize()
-{
-	int length=0;
-	while(nodes[length]!=-1)
-	length++;
-	return length;
-}
-
-/* Recursive function to construct binary tree */
+// Recursive function to construct a balanced binary tree
 tree* buildtreeUtil(int start,int end)
 {
-	int mid = 0;
+	int mid;
+	tree * temp = malloc(sizeof(struct node));
 	// base case
-	if(start>end)
-	return NULL;
-
-	/* Get the middle element and make it root */
-	mid = (start+end)/2;
-	root->data = nodes[mid];
-	/* Using index in Inorder traversal, construct
-	left and right subtress */
-	root->left  = buildtreeUtil(start, mid--);
-	root->right = buildtreeUtil(mid++, end);
-	return root;
-}
-
-// This functions converts an unbalanced BST to
-// a balanced BST
-tree *buildTree(tree *root)
-{
-	// Store nodes of given BST in sorted order
-	nm = 0;
-	int i;
-	storeBSTNodes(root);
-	// Constucts BST from nodes[]
-	printf("nm = %d\n",nm);
-	for(i=0;i<nm;i++)
-	printf("%d ",nodes[i]);
-	printf("\n");
-	root = NULL;
-	return buildtreeUtil(0, nm-1);
-}
-
-void inOrder(tree *root)
-{
-	if(root==NULL)
-	return;
-	else
-	{
-		inOrder(root->left);
-		printf("%d ",root->data);
-		inOrder(root->right);
+	if(start > end){
+		return NULL;
 	}
+
+	// Get the middle element and make it temp root
+	mid = (start + end) / 2;
+	temp = getNewNode(nodes[mid]);
+	// Using index in Inorder traversal, construct left and right subtress
+	temp->left  = buildtreeUtil(start, mid - 1);
+	temp->right = buildtreeUtil(mid + 1, end);
+	return temp;
+}
+
+int isSymmetric(tree *root)
+{
+	// Check if binary tree is mirror of itself
+	return isMirror(root, root);
+}
+
+int isMirror(tree *root1, tree *root2)
+{
+	// If both trees are emptu, then they are mirror images
+	if (root1==NULL&&root2==NULL)
+	return true;
+	/* For two trees to be mirror images, the following three conditions must be true
+	1 - Their root node's key must be same
+	2 - left subtree of left tree and right subtree
+	of right tree have to be mirror images
+	3 - right subtree of left tree and left subtree
+	of right tree have to be mirror images */
+	if (root1&&root2&&root1->data == root2->data)
+	return isMirror(root1->left, root2->right)&&isMirror(root1->right, root2->left);
+	// If neither of above conditions is true then root1 and root2 are not mirror images
+	return false;
+}
+
+tree *mirrorImage(tree *root)
+{
+	tree *m_root = NULL;
+	if(root==NULL) {
+		return NULL;
+	}
+	m_root = getNewNode(root->data);
+	m_root->left = mirrorImage(root->right);
+	m_root->right = mirrorImage(root->left);
+	return m_root;
 }
 
 // Utility function to insert a new node into BST
@@ -459,41 +481,6 @@ tree *insertBST(tree *root,int value)
 	return root;
 }
 
-int isMirror(tree *root1, tree *root2)
-{
-	// If both trees are emptu, then they are mirror images
-	if (root1==NULL&&root2==NULL)
-	return true;
-	/* For two trees to be mirror images, the following three conditions must be true
-	1 - Their root node's key must be same
-	2 - left subtree of left tree and right subtree
-	of right tree have to be mirror images
-	3 - right subtree of left tree and left subtree
-	of right tree have to be mirror images */
-	if (root1&&root2&&root1->data == root2->data)
-	return isMirror(root1->left, root2->right)&&isMirror(root1->right, root2->left);
-	// If neither of above conditions is true then root1 and root2 are not mirror images
-	return false;
-}
-
-int isSymmetric(tree *root)
-{
-	// Check if binary tree is mirror of itself
-	return isMirror(root, root);
-}
-
-tree *mirrorImage(tree *root)
-{
-	tree *m_root = NULL;
-	if(root==NULL) {
-		return NULL;
-	}
-	m_root = getNewNode(root->data);
-	m_root->left = mirrorImage(root->right);
-	m_root->right = mirrorImage(root->left);
-	return m_root;
-}
-
 tree *getNewNode(int data)
 {
 	tree *new_node;
@@ -504,17 +491,6 @@ tree *getNewNode(int data)
 	return new_node;
 }
 
-void InorderTraversal(tree *mirror)
-{
-	if(mirror==NULL)
-	return;
-	else
-	{
-		InorderTraversal(mirror->left);
-		printf("%d ",mirror->data);
-		InorderTraversal(mirror->right);
-	}
-}
 int isFulltree(tree *root)
 {
 	// If empty tree
@@ -533,6 +509,38 @@ int isFulltree(tree *root)
 	return false;
 }
 
+void InorderTraversal(tree *mirror)
+{
+	if(mirror==NULL)
+	return;
+	else
+	{
+		InorderTraversal(mirror->left);
+		printf("%d ",mirror->data);
+		InorderTraversal(mirror->right);
+	}
+}
+
+void PreorderTraversal(tree *root)
+{
+	if(root==NULL) {
+		return;
+	}
+	else
+	{
+		printf("%d ",root->data);
+		PreorderTraversal(root->left);
+		PreorderTraversal(root->right);
+	}
+}
+
+// This function mainly initializes index of and calls buildUtil()
+tree *buildTree_2(int in[], int post[], int n)
+{
+	int pIndex = n-1;
+	return buildUtil(in, post, 0, n-1, &pIndex);
+}
+
 /* Recursive function to construct binary of size n
 from  Inorder traversal in[] and Preorder traversal
 post[].  Initial values of inStrt and inEnd should
@@ -545,34 +553,23 @@ tree *buildUtil(int in[], int post[], int inStart, int inEnd, int *pIndex)
 	if(inStart > inEnd) {
 		return NULL;
 	}
-	/* Pick current node from Preorder traversal using
-	postIndex and decrement postIndex */
+	// Pick current node from Preorder traversal using postIndex and decrement postIndex
 	tree *node = getNewNode(post[*pIndex]);
 	(*pIndex)--;
-	/* If this node has no children then return */
-	if(inStart == inEnd) {
+	// If this node has no children then return
+	if(inStart==inEnd) {
 		return node;
 	}
-	/* Else find the index of this node in Inorder
-	traversal */
+	// Else find the index of this node in Inorder traversal
 	int iIndex = search(in, inStart, inEnd, node->data);
-	/* Using index in Inorder traversal, construct left and
-	right subtress */
+	// Using index in Inorder traversal, construct left and right subtress
 	node->right= buildUtil(in, post, iIndex+1, inEnd, pIndex);
 	node->left = buildUtil(in, post, inStart, iIndex-1, pIndex);
 	return node;
 }
 
-// This function mainly initializes index of root
-// and calls buildUtil()
-tree *buildtree(int in[], int post[], int n)
-{
-	int pIndex = n-1;
-	return buildUtil(in, post, 0, n-1, &pIndex);
-}
-
 /* Function to find index of value in arr[start...end]
-The function assumes that value is postsent in in[] */
+	 The function assumes that value is postsent in in[] */
 int search(int arr[], int start, int end, int value)
 {
 	int i;
@@ -651,8 +648,8 @@ tree *find(int elem, tree *t)
 	}
 }
 
-//Insert i into the tree t, duplicate will be discarded
-//Return a pointer to the resulting tree.
+/* Insert i into the tree t, duplicate will be discarded
+   Return a pointer to the resulting tree. */
 tree * insert(int value, tree * t)
 {
 	tree * new_node;
@@ -681,7 +678,7 @@ tree * insert(int value, tree * t)
 	}
 	else
 	{
-		//duplicate, ignore it
+		// Duplicate, Ignore it
 		return t;
 	}
 	return t;
@@ -689,7 +686,7 @@ tree * insert(int value, tree * t)
 
 tree * delete(int value, tree * t)
 {
-	//Deletes node from the tree
+	// Deletes node from the tree
 	// Return a pointer to the resulting tree
 	tree * x;
 	tree *tmp_cell;
@@ -733,7 +730,7 @@ int MAX (int X, int Y)
 	return ((X) > (Y)) ? (X) : (Y);
 }
 
-//prints ascii tree for given tree structure
+//Prints ascii tree for given tree structure
 void print_ascii_tree(tree * t)
 {
 	asciinode *proot;
@@ -765,9 +762,9 @@ void print_ascii_tree(tree * t)
 	free_ascii_tree(proot);
 }
 
-// print tree
-//This function prints the given level of the given tree, assuming
-//that the node has the given x cordinate.
+// Print tree
+// This function prints the given level of the given tree, assuming
+// that the node has the given x cordinate.
 void print_level(asciinode *node, int x, int level)
 {
 	int i, isleft;
@@ -813,15 +810,14 @@ void print_level(asciinode *node, int x, int level)
 	}
 }
 
-//This function fills in the edge_length and
-//height fields of the specified tree
+//This function fills in the edge_length and height fields of the specified tree
 void compute_edge_lengths(asciinode *node) {
 	int h, hmin, i, delta;
 	if (node == NULL) return;
 	compute_edge_lengths(node->left);
 	compute_edge_lengths(node->right);
 
-	/* first fill in the edge_length of node */
+	// First fill in the edge_length of node
 	if (node->right == NULL && node->left == NULL)
 	{
 		node->edge_length = 0;
@@ -860,8 +856,7 @@ void compute_edge_lengths(asciinode *node) {
 			delta = MAX(delta, gap + 1 + rprofile[i] - lprofile[i]);
 		}
 
-		//If the node has two children of height 1, then we allow the
-		//two leaves to be within 1, instead of 2
+		// If the node has two children of height 1, then we allow the two leaves to be within 1, instead of 2
 		if (((node->left != NULL && node->left->height == 1) ||
 		(node->right != NULL && node->right->height == 1))&&delta>4)
 		{
@@ -871,7 +866,7 @@ void compute_edge_lengths(asciinode *node) {
 		node->edge_length = ((delta+1)/2) - 1;
 	}
 
-	//now fill in the height of node
+	// Now fill in the height of node
 	h = 1;
 	if (node->left != NULL)
 	{
@@ -910,7 +905,7 @@ asciinode * build_ascii_tree_recursive(tree * t)
 	return node;
 }
 
-//Copy the tree into the ascii node structre
+// Copy the tree into the ascii node structre
 asciinode * build_ascii_tree(tree * t)
 {
 	asciinode *node;
@@ -920,7 +915,7 @@ asciinode * build_ascii_tree(tree * t)
 	return node;
 }
 
-//Free all the nodes of the given tree
+// Free all the nodes of the given tree
 void free_ascii_tree(asciinode *node)
 {
 	if (node == NULL) return;
@@ -929,10 +924,10 @@ void free_ascii_tree(asciinode *node)
 	free(node);
 }
 
-//The following function fills in the lprofile array for the given tree.
-//It assumes that the center of the label of the root of this tree
-//is located at a position (x,y).  It assumes that the edge_length
-//fields have been computed for this tree.
+/* The following function fills in the lprofile array for the given tree.
+   It assumes that the center of the label of the root of this tree
+   is located at a position (x,y).  It assumes that the edge_length
+   fields have been computed for this tree. */
 void compute_lprofile(asciinode *node, int x, int y)
 {
 	int i, isleft;

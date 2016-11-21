@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<conio.h>
 #include<malloc.h>
 #define MAX 10
@@ -249,7 +249,7 @@ void Linearqueue()
 			for(i=front;i<=rear;i++)
 				printf("\t %d", queue[i]);
 		}
-	} 
+	}
 }
 void Deques()
 {
@@ -434,7 +434,7 @@ void Deques()
 			while(front<=rear)
 			{
 				printf("%d",deque[front]);
-				front++;	
+				front++;
 			}
 		}
 		else
@@ -583,5 +583,5 @@ void Josephusproblem()
 		printf("\n The winner is player %d", ptr->playerid);
 		getche();
 		return 0;
-	}	
-}       
+	}
+}

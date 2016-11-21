@@ -3,13 +3,13 @@
 #define MAX 100
 char stack[MAX];
 int top=-1;
-void push(char [], char);
-char pop(char []);
+void push_char(char [], char);
+char pop_char(char []);
 void InfixtoPostfix(char source[], char target[]);
 int getPriority(char);
 void main()
 {
-	char infix[100], postfix[100];
+	char infix_char[100], postfix_char[100];
 	printf("\nEnter any infix expression: ");
 	gets(infix);
 	strcpy(postfix,"");
