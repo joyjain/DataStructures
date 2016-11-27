@@ -1,57 +1,60 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<malloc.h>
-struct node{
+typedef struct node{
 	int data;
 	struct node *next;
-};
-struct node *start=NULL;
-struct node *create_ll(struct node*);
-struct node *display(struct node*);
-struct node *insert_beg(struct node*);
-struct node *insert_end(struct node*);
-struct node *delete_beg(struct node*);
-struct node *delete_end(struct node*);
-int main(void)
+}node;
+
+node *start = NULL;
+void create_ll();
+void display();
+void insert_beg();
+void insert_end();
+void delete_beg();
+void delete_end();
+void main()
 {
 	int operation;
-	do
-	{
+	while(1) {
 	printf("Enter the operation to perform:\n");
-	printf("\"1\" for creation.\n\"2\" for insertion at the beginning.\n\"3\" for insertion at the end.\n\"4\" for deletion at the beginning.\n\"5\" for deletion at the end.\nOperation: ");
+	printf("\"1\" for creation.\n\"2\" for insertion at the beginning.\n\"3\" for insertion at the end.\n\"4\" for deletion at the beginning.\n\"5\" for deletion at the end.\n\"6\" to display\n\"7\" to exit.\nOperation: ");
 	scanf("%d",&operation);
 	switch(operation)
 	{
 		case 1:
-			start = create_ll(start);
-			goto display;
+			create_ll();
+			break;
 		case 2:
-			start = insert_beg(start);
-			goto display;
+			insert_beg();
+			break;
 		case 3:
-			start = insert_end(start);
-			goto display;
+			insert_end();
+			break;
 		case 4:
-			start = delete_beg(start);
-			goto display;
+			delete_beg();
+			break;
 		case 5:
-			start = delete_end(start);
-			goto display;
-		display:
-			start = display(start);
+			delete_end();
+			break;
+		case 6:
+			display();
+			break;
+		case 7:
+			exit(0);
 			break;
 	}
-	}while(operation<1||operation>5);
 }
-struct node *create_ll(struct node *start)
+}
+void create_ll()
 {
-	struct node *new_node,*ptr;
+	node *new_node,*ptr;
 	int num;
 	printf("Enter the data, \"0\" to abort. :");
 	scanf("%d",&num);
 	while(num!=0)
 	{
-		new_node = (struct node*)malloc(sizeof(struct node));
+		new_node = malloc(sizeof(node));
 		new_node->data = num;
 		if(start==NULL)
 		{
@@ -62,83 +65,81 @@ struct node *create_ll(struct node *start)
 		{
 			ptr = start;
 			while(ptr->next!=start)
-				ptr=ptr->next;
-			ptr->next=new_node;
-			new_node->next=start;
+				ptr = ptr->next;
+			ptr->next = new_node;
+			new_node->next = start;
 		}
 		printf("Enter the data: ");
 		scanf("%d",&num);
 	}
-		return start;
 	}
-	
-struct node *display(struct node *start)
+
+void display()
 {
-		struct node *new_node;
-		new_node=start;
-		printf("The circular linked is: ");
+		node *new_node;
+		new_node = start;
+		printf("\nThe circular linked is: ");
 		while(new_node->next!=start)
 		{
-			printf("%d->",new_node->data);
-			new_node=new_node->next;
+			printf("%d ",new_node->data);
+			new_node = new_node->next;
 		}
+		printf("%d",new_node->data);
+		printf("\n\n");
 }
-	
-struct node *insert_beg(struct node *start)
+
+void insert_beg()
 {
-	struct node *new_node,*ptr;
+	node *new_node,*ptr;
 	int num;
 	printf("Enter the data:\n");
 	scanf("%d",&num);
-	new_node=(struct node*)malloc(sizeof(struct node));
-	new_node->data=num;
-	ptr=start;
+	new_node = malloc(sizeof(node));
+	new_node->data = num;
+	ptr = start;
 	while(ptr->next!=start)
-		ptr=ptr->next;
-	ptr->next=new_node;
-	new_node->next=start;
-	start=new_node;
-	return start;
+		ptr = ptr->next;
+	ptr->next = new_node;
+	new_node->next = start;
+	start = new_node;
 }
 
-struct node *insert_end(struct node *start)
+void insert_end()
 {
-	struct node *new_node,*ptr;
+	node *new_node,*ptr;
 	int num;
 	printf("Enter the data:\n");
 	scanf("%d",&num);
-	new_node=(struct node*)malloc(sizeof(struct node));
-	new_node->data=num;
-	ptr=start;
+	new_node = malloc(sizeof(node));
+	new_node->data = num;
+	ptr = start;
 	while(ptr->next!=start)
-		ptr=ptr->next;
-	ptr->next=new_node;
-	new_node->next=start;
-	return start;
+		ptr = ptr->next;
+	ptr->next = new_node;
+	new_node->next = start;
 }
 
-struct node *delete_beg(struct node *start)
+void delete_beg()
 {
-	struct node *ptr;
-	ptr=start;
+	node *ptr;
+	ptr = start;
 	while(ptr->next!=start)
-		ptr=ptr->next;
-	ptr->next=start->next;
+		ptr = ptr->next;
+	ptr->next = start->next;
 	free(start);
-	start=ptr->next;
-	return start;
+	start = ptr->next;
 }
-struct node *delete_end(struct node *start)
+
+void delete_end()
 {
-	struct node *ptr,*preptr;
-	ptr=start;
-	preptr=ptr;
-	while(preptr->next!=start)
-	{
-		ptr=ptr->next;
-		preptr=ptr;
-	}
-	preptr->next=ptr->next;
+	node *ptr,*preptr;
+	ptr = start;
+	preptr = ptr;
+		while(ptr->next!=start)
+		{
+			preptr = ptr;
+			ptr = ptr->next;
+		}
+		preptr->next = ptr->next;
 	free(ptr);
-	return start;
 }
