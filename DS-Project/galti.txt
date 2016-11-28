@@ -1,0 +1,23 @@
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c: In function 'TakeExpression':
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:21:10: warning: implicit declaration of function 'ConstructExpressionTree' [-Wimplicit-function-declaration]
+   return ConstructExpressionTree(lodu);
+          ^
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:21:10: warning: return makes pointer from integer without a cast [-Wint-conversion]
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c: At top level:
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:24:7: error: conflicting types for 'ConstructExpressionTree'
+ Tree *ConstructExpressionTree(char postfix[])
+       ^
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:21:10: note: previous implicit declaration of 'ConstructExpressionTree' was here
+   return ConstructExpressionTree(lodu);
+          ^
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c: In function 'ConstructExpressionTree':
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:26:15: error: 'MAX_CUSTOM_STACK' undeclared (first use in this function)
+   Tree *stack[MAX_CUSTOM_STACK], *t, *t1, *t2;
+               ^
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:26:15: note: each undeclared identifier is reported only once for each function it appears in
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:38:13: warning: implicit declaration of function 'push_custom_stack' [-Wimplicit-function-declaration]
+       top = push_custom_stack(stack, t, top);
+             ^
+\\Joy\f\Study Stuff\IT 3rd Semester\DS\DS-Project\Test2.c:48:13: warning: implicit declaration of function 'pop_custom_stack' [-Wimplicit-function-declaration]
+       top = pop_custom_stack(stack, top);      // Remove top
+             ^
