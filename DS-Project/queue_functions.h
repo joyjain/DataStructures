@@ -56,11 +56,11 @@ void Linearqueue1()
 					break;
 			case 2: val= delete1();
 					if(val!= -1)
-						printf("\n The number deleted is : %d",val);
+						printf("\n\t\t\t\t\t\t\t\t\tThe number deleted is : %d",val);
 					break;
 			case 3: val= peek1();
 					if(val!= -1)
-						printf("\n\t\t\t\t\t\t\t    The first value in queue is : %d", val);
+						printf("\n\t\t\t\t\t\t\t\t\tThe first value in queue is : %d", val);
 					break;
 			case 4: display1();
 					break;
@@ -78,7 +78,7 @@ void insert1()
 	printf("\n\t\t\t\t\t\t\t    Enter the number to be inserted in the queue :");
 		scanf("%d", &num);
 	if(rear ==MAX-1)
-		printf("\n OVERFLOW");
+		printf("\n\t\t\t\t\t\t\t\t\tOVERFLOW");
 	else if(front==-1 && rear==-1)
 		front=rear=0;
 	else
@@ -91,7 +91,7 @@ int delete1()
 	int val;
 	if(front==-1 || front>rear)
 	{
-		printf("\n UNDERFLOW");
+		printf("\n\t\t\t\t\t\t\t\t\tUNDERFLOW");
 		return -1;
 	}
 	else
@@ -108,7 +108,7 @@ int peek1()
 {
 	if(front==-1 || front>rear)
 	{
-		printf("\n QUEUE IS EMPTY");
+		printf("\n\t\t\t\t\t\t\t\t\tQUEUE IS EMPTY");
 		return -1;
 	}
 	else
@@ -122,7 +122,7 @@ void display1()
 	int i;
 	printf("\n");
 	if(front==-1 || front>rear)
-		printf("\n QUEUE IS EMPTY");
+		printf("\n\t\t\t\t\t\t\t\t\tQUEUE IS EMPTY");
 	else
 	{
 		for(i=front;i<=rear;i++)
@@ -134,9 +134,9 @@ void display1()
 void Deques2()
 {
 	int option;
-	printf("\n 1. Input restricted deque");
-	printf("\n 2. Output rstricted deque");
-	printf("\n Enter your option: ");
+	printf("\n\t\t\t\t\t\t\t\t\t1. Input restricted deque");
+	printf("\n\t\t\t\t\t\t\t\t\t2. Output restricted deque");
+	printf("\n\t\t\t\t\t\t\t\t\t   Enter your option: ");
 	scanf("%d", &option);
 	switch(option)
 	{
@@ -149,16 +149,16 @@ void Deques2()
 
 void inputdeque2()
 {
-  printf("\n INPUT RESTRICTED DEQUE");
-  printf("\n 1.Insert at right");
-  printf("\n 2.Delete from left");
-  printf("\n 3.Delete from right");
-  printf("\n 4.Display");
-  printf("\n 5.Quit");
+  printf("\n\t\t\t\t\t\t\t\t\tINPUT RESTRICTED DEQUE");
+  printf("\n\t\t\t\t\t\t\t\t\t1.Insert at right");
+  printf("\n\t\t\t\t\t\t\t\t\t2.Delete from left");
+  printf("\n\t\t\t\t\t\t\t\t\t3.Delete from right");
+  printf("\n\t\t\t\t\t\t\t\t\t4.Display");
+  printf("\n\t\t\t\t\t\t\t\t\t5.Quit");
 	int option;
 	do
 	{
-		printf("\n Enter the option: ");
+		printf("\n\t\t\t\t\t\t\t\t\t   Enter the option: ");
 			scanf("%d",&option);
 		switch(option)
 		{
@@ -173,23 +173,23 @@ void inputdeque2()
       case 5:
           break;
       default:
-          printf("OPTION DOESN\'T EXIST TRY AGAIN");
+          printf("\n\t\t\t\t\t\t\t\t\tOPTION DOESN\'T EXIST TRY AGAIN");
 		}
 	}while(option!=5);
 }
 
 void outputdeque2()
 {
-  printf("\n OUTPUT RESTRICTED DEQUE");
-  printf("\n 1.Insert at right");
-  printf("\n 2.Delete at left");
-  printf("\n 3.Delete from left");
-  printf("\n 4.Display");
-  printf("\n 5.Quit");
+  printf("\n\t\t\t\t\t\t\t\t\tOUTPUT RESTRICTED DEQUE");
+  printf("\n\t\t\t\t\t\t\t\t\t1.Insert at right");
+  printf("\n\t\t\t\t\t\t\t\t\t2.Delete at left");
+  printf("\n\t\t\t\t\t\t\t\t\t3.Delete from left");
+  printf("\n\t\t\t\t\t\t\t\t\t4.Display");
+  printf("\n\t\t\t\t\t\t\t\t\t5.Quit");
 	int option;
 	do
 	{
-		printf("\n Enter the option: ");
+		printf("\n\t\t\t\t\t\t\t\t\t   Enter the option: ");
 			scanf("%d",&option);
 		switch(option)
 		{
@@ -204,7 +204,7 @@ void outputdeque2()
       case 5:
           break;
       default:
-          printf("OPTION DOESN\'T EXIST TRY AGAIN");
+          printf("\n\t\t\t\t\t\t\t\t\tOPTION DOESN\'T EXIST TRY AGAIN");
 		}
 	}while(option!=5);
 }
@@ -212,7 +212,7 @@ void outputdeque2()
 void insertright2()
 {
 	int val;
-	printf("\n Enter the vale to be added :");
+	printf("\n\t\t\t\t\t\t\t\t\t   Enter the value to be added :");
 		scanf("%d", &val);
 	if(left == 0 && right == MAX-1 || (left==right+1))
 	{
@@ -237,7 +237,7 @@ void insertright2()
 void insertleft2()
 {
 	int val;
-	printf("\n Enter the vale to be added :");
+	printf("\n\t\t\t\t\t\t\t\t\t   Enter the value to be added :");
 		scanf("%d", &val);
 	if(left == 0 && right == MAX-1 || (left==right+1))
 	{
@@ -263,10 +263,10 @@ void deleteleft2()
 {
 	if(left==-1)
 	{
-		printf("\n UNDERFLOW");
+		printf("\n\t\t\t\t\t\t\t\t\t   UNDERFLOW");
 		return;
 	}
-	printf("\n Deleted element is : %d",deque[left]);
+	printf("\n\t\t\t\t\t\t\t\t\t   Deleted element is : %d",deque[left]);
 	if(left==right)  //queue has only one element
 	{
 		left=-1;
@@ -285,10 +285,10 @@ void deleteright2()
 {
 	if(left==-1)
 	{
-		printf("\n UNDERFLOW");
+		printf("\n\t\t\t\t\t\t\t\t\t   UNDERFLOW");
 		return;
 	}
-	printf("\n Deleted element is : %d",deque[right]);
+	printf("\n\t\t\t\t\t\t\t\t\t   Deleted element is : %d",deque[right]);
 	if(left==right)  //queue has only one element
 	{
 		left=-1;
@@ -308,10 +308,10 @@ void display2()
 	int front=left, rear=right;
 	if(front==-1)
 	{
-		printf("\n QUEUE IS EMPTY");
+		printf("\n\t\t\t\t\t\t\t\t\t   QUEUE IS EMPTY");
 		return;
 	}
-	printf("\n The elements of the queue are :");
+	printf("\n\t\t\t\t\t\t\t\t\t   The elements of the queue are :");
 	if(front<=rear)
 	{
 		while(front<=rear)
@@ -340,15 +340,15 @@ void display2()
 //PRIORITY QUEUE
 void Priorityqueue3()
 {
-  printf("\n *****MAIN MENU*****");
-  printf("\n 1.Insert");
-  printf("\n 2.Delete");
-  printf("\n 3.Display");
-  printf("\n 4.TO STOP");
+  printf("\n\t\t\t\t\t\t\t\t\t   *****MAIN MENU*****");
+  printf("\n\t\t\t\t\t\t\t\t\t        1.Insert");
+  printf("\n\t\t\t\t\t\t\t\t\t        2.Delete");
+  printf("\n\t\t\t\t\t\t\t\t\t        3.Display");
+  printf("\n\t\t\t\t\t\t\t\t\t        4.TO STOP");
 	int option;
 	do
 	{
-    printf("\n Enter your option: ");
+    printf("\n\t\t\t\t\t\t\t\t\tEnter your option: ");
 		scanf("%d", &option);
 		switch(option)
 		{
@@ -364,7 +364,7 @@ void Priorityqueue3()
       case 4:
         break;
       default:
-        printf("OPTION DOESN\'T EXIST TRY AGAIN");
+        printf("\n\t\t\t\t\t\t\t\t\tOPTION DOESN\'T EXIST TRY AGAIN");
 		}
 	}while(option!=4);
 }
@@ -374,7 +374,7 @@ struct queue *insert3(struct queue *start_q)
 	int val,pri;
 	struct queue *ptr,*p;
 	ptr= (struct  queue *)malloc(sizeof(struct queue));
-	printf("\n Enter the value and its priority :");
+	printf("\n\t\t\t\t\t\t\t\t\tEnter the value and its priority :");
 		scanf("%d %d", &val,&pri);
 	ptr->data=val;
 	ptr->priority=pri;
@@ -399,12 +399,12 @@ struct queue *delete3(struct queue *start_q)
 	struct queue *ptr;
 	if(start_q == NULL)
 	{
-		printf("\n UNDERFLOW");
+		printf("\n\t\t\t\t\t\t\t\t\tUNDERFLOW");
 	}
 	else
 	{
 		ptr=start_q;
-		printf("\n Deleted item is: %d",ptr->data);
+		printf("\n\t\t\t\t\t\t\t\t\tDeleted item is: %d",ptr->data);
 		start_q = start_q->next;
 		free(ptr);
 	}
@@ -416,10 +416,10 @@ void display3(struct queue *start_q)
 	struct queue *ptr;
 	ptr=start_q;
 	if(start_q==NULL)
-		printf("\n QUEUE IS EMPTY");
+		printf("\n\t\t\t\t\t\t\t\t\tQUEUE IS EMPTY");
 	else
 	{
-		printf("\n PRIORITY QUEUE IS:");
+		printf("\n\t\t\t\t\t\t\t\t\tPRIORITY QUEUE IS:");
 		while(ptr!=NULL)
 		{
 			printf("\t%d [priority=%d]",ptr->data,ptr->priority);
@@ -440,9 +440,9 @@ void Josephusproblem4()
 
 	struct josephus *start4,*ptr,*newnode;
 	int n,k,i,count;
-	printf("\nEnter the number of players: ");
+	printf("\n\t\t\t\t\t\t\t\t\tEnter the number of players: ");
 	scanf("%d",&n);
-	printf("\nEnter the value of k (every kth player gets eliminated): ");
+	printf("\n\t\t\t\t\t\t\tEnter the value of k (every kth player gets eliminated): ");
 	scanf("%d",&k);
 	// Create circular linked list containing all players
 	start4 = (struct josephus *)malloc(sizeof(struct josephus));
@@ -462,5 +462,5 @@ void Josephusproblem4()
 			ptr = ptr->next;
 		ptr->next = ptr->next->next; // Remove the eliminated player
 	}
-	printf("\n The winner is player %d", ptr->playerid);
+	printf("\n\t\t\t\t\t\t\t\t\t     The winner is player %d", ptr->playerid);
 }

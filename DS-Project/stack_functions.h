@@ -37,13 +37,13 @@ float evaluatePostfixExp(char []);
 
 void InfixtoPostfix_call()
 {
-	printf("\nEnter any infix expression: ");
+	printf("\n\t\t\t\t\t\t\t\t   Enter any infix expression: ");
 	fflush(stdin);
 	scanf("%[^\n]s", infix_char);
 	fflush(stdin);
 	strcpy(postfix_char, "");
 	InfixtoPostfix(infix_char, postfix_char);
-	printf("\nThe corresponding postfix expression is: ");
+	printf("\n\t\t\t\t\t\t\t   The corresponding postfix expression is: ");
 	printf("%s", postfix_char);
 }
 
@@ -51,7 +51,7 @@ void InfixtoPrefix_call()
 {
 	int i=0, k=0;
 	char ch, elem;
-	printf("\nEnter any infix expression: ");
+	printf("\n\t\t\t\t\t\t\t\t   Enter any infix expression: ");
 	strcpy(infix_char, "");
 	fflush(stdin);
 	scanf("%[^\n]s", infix_char);
@@ -81,14 +81,14 @@ void InfixtoPrefix_call()
 			prefix_char[k++] = pop_in();
 	strrev(prefix_char);
 	strrev(infix_char);
-	printf("The corresponding prefix expression is: ");
+	printf("\n\t\t\t\t\t\t\t   The corresponding prefix expression is: ");
 	printf("%s", prefix_char);
 }
 
 void PostfixtoPrefix_call()
 {
 	int i;
-	printf("\nEnter any postfix expression: ");
+	printf("\n\t\t\t\t\t\t\t\t   Enter any postfix expression: ");
 	strcpy(postfix_char, "");
 	fflush(stdin);
 	scanf("%[^\n]s", postfix_char);
@@ -96,7 +96,7 @@ void PostfixtoPrefix_call()
 	strrev(postfix_char);
 	strcpy(prefix_char, "");
 	strcpy(prefix_char, postfix_char);
-	printf("The corresponding prefix expression is: ");
+	printf("\n\t\t\t\t\t\t\t   The corresponding prefix expression is: ");
 	printf("%s",prefix_char);
 }
 
@@ -104,7 +104,7 @@ void PrefixtoPostfix_call()
 {
 	char ch, str[MAX], operand1[MAX], operand2[MAX], opr[MAX];
 	int i=0, k=0, operand_count=0;
-	printf("\n\nEnter any prefix expression: ");
+	printf("\n\t\t\t\t\t\t\t\t   Enter any prefix expression: ");
 	strcpy(prefix_char, "");
 	fflush(stdin);
 	scanf("%[^\n]s", prefix_char);
@@ -151,7 +151,7 @@ void PrefixtoPostfix_call()
 			strcat(str,opr);
 			pushd(str);
 	}
-	printf("The corresponding postfix expression is: ");
+	printf("\n\t\t\t\t\t\t\t   The corresponding postfix expression is: ");
 	printf("%s\n",opnds);
 }
 
@@ -159,10 +159,10 @@ void PostfixEvaluation_call()
 {
 	float val;
 	char exp[100];
-	printf("\n\nEnter any postfix expression: ");
+	printf("\n\t\t\t\t\t\t\t\t   Enter any postfix expression: ");
 	gets(exp);
 	val = evaluatePostfixExp(exp);
-	printf("\nValue of the postfix expression = %.2f", val);
+	printf("\n\t\t\t\t\t\t\t   Value of the postfix expression = %.2f", val);
 }
 
 int pr(char elem)

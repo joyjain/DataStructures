@@ -7,17 +7,21 @@
 #include <string.h>
 #include "stack_functions.h"
 
+#define CYN   "\x1B[36m"
+#define MAG   "\x1B[35m"
+#define RESET "\x1B[0m"
+
 Tree *TakeExpression();
 Tree *ConstructExpressionTree(char []);
 void MakeExpressionTree();
 
 void MakeExpressionTree()
 {
-  printf("\t\t\t\t\t\t\t\t\t *\n");
-  printf("\t\t\t\t\t\t\t\t\t/ \\ \n");
-  printf("\t\t\t\t\t\t\t\t       +   c\n");
-  printf("\t\t\t\t\t\t\t\t      / \\\n");
-  printf("\t\t\t\t\t\t\t\t     a   b\n\n");
+  printf(CYN "\t\t\t\t\t\t\t\t\t *\n" RESET);
+  printf(MAG "\t\t\t\t\t\t\t\t\t/ \\ \n" RESET);
+  printf(CYN "\t\t\t\t\t\t\t\t       +   c\n" RESET);
+  printf(MAG "\t\t\t\t\t\t\t\t      / \\\n" RESET);
+  printf(CYN "\t\t\t\t\t\t\t\t     a   b\n\n" RESET);
 }
 
 Tree *TakeExpression()

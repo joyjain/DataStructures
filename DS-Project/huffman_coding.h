@@ -221,7 +221,7 @@ void printCodes(struct MinHeapNode* root, int arr[], int top)
   {
     // also update the code table
     codeTable[codeCount] = root->data;
-    printf("%c         | ", root->data);
+    printf("\t\t\t\t\t\t\t\t\t%c         | ", root->data);
     printArr(arr, top);
   }
 }
@@ -234,9 +234,9 @@ void HuffmanCodes(char data[], int freq[], int size)
   struct MinHeapNode* root = buildHuffmanTree(data, freq, size);
   // Print Huffman codes using the Huffman tree built above
   int arr[MAX_TREE_HT], top = 0;
-  printf("USE THE HUFFMAN CODES TO DECODE THE STRING\n\n");
-  printf("CHARACTER | CODE \n");
-  printf("---------------- \n");
+  printf("\t\t\t\t\t\t\t    USE THE HUFFMAN CODES TO DECODE THE STRING\n\n");
+  printf("\t\t\t\t\t\t\t\t\tCHARACTER | CODE \n");
+  printf("\t\t\t\t\t\t\t\t\t---------------- \n");
   printCodes(root, arr, top);
-  printf("---------------- \n\n");
+  printf("\t\t\t\t\t\t\t\t\t---------------- \n\n");
 }

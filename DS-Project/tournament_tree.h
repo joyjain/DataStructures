@@ -17,7 +17,7 @@ Tree *TournamentTree()
   char user = 'A';
   int rounds = 0, value, i = 0, j = 0, n;
   Tree *root = NULL;
-  printf("Enter the number of players in your Tournament initially (In powers of 2): ");
+  printf("\t\t\t\t\t\tEnter the number of players in your Tournament initially (In powers of 2): ");
   fflush(stdin);
   scanf("%d",&n);
 
@@ -25,7 +25,7 @@ Tree *TournamentTree()
   {
     make_empty(tournament[i]);
     players[i] = user;
-    printf("Enter Player %c\'s winning chance(Scale 0 to 9): ", user++);
+    printf("\t\t\t\t\t\t\tEnter Player %c\'s winning chance(Scale 0 to 9): ", user++);
     fflush(stdin);
     scanf("%c", &tournament_weights[i]);
     tournament[i] = insert(players[i], 1, tournament[i]);
