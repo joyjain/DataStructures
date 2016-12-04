@@ -315,7 +315,7 @@ void main()
 								      }
 								    }
 								  }
-								  // pass this info to Huffman algo
+								  // Pass this info to Huffman algorithm
 								  HuffmanCodes(letters, frequency, count);
 								  // the output encoded sentence
 								  printf("\t\t\t\t\t\t\t\t\tTHE ENCODED SENTENCE IS\n");
